@@ -1,0 +1,27 @@
+﻿@model Dailydive.Contracts.Dto.Domain.Task
+@{
+    ViewBag.Title = "EditTask";
+}
+
+<h2>EditTask</h2>
+
+<div class="container">
+    <form method="post"action="/home/UpdateTask">
+        <table class="table-hover">
+            <thead>
+                <tr>
+                    <th>Task Name</th>
+                    <th>Measurement</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td> @Model.TaskName</td>
+                    <td><input name="TaskMeasurement" type="text" value="@Model.TaskMeasurement" /> </td>
+                </tr>
+            </tbody>
+        </table>
+        <input name="TaskId" type="hidden" value="@Model.TaskId" />
+        <input type="submit" class="btn btn-success"/>
+    </form>
+</div>

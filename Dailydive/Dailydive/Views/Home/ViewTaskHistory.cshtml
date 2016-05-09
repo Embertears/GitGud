@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Dailydive.Contracts.Dto.Domain.TaskHistory>
+
+@{
+    ViewBag.Title = "ViewTaskHistory";
+}
+
+<h2 class="page-header">Task History</h2>
+<form method="get" action="/home/SearchTaskHistory">
+    <label>Search By Task Name:</label>
+    <div class="row">
+        <div class="col-md-2">
+            <input name="TaskName" type="text" class="form-control" />
+        </div>
+        <div class="col-md-3">
+            <input type="submit" class="btn btn-warning" />
+        </div>
+    </div>
+</form>
+<br />
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Task Name</th>
+                <th>Quantity</th>
+                <th>Measurement</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.TaskDate.ToString("dd MMMM yyyy")</td>
+                    <td>@item.TaskName</td>
+                    <td>@item.TaskQuantity</td>
+                    <td>@item.TaskMeasurement</td>
+                    <td>@item.TaskDetails</td>
+                    <td><a class="editTask" href="/Home/EditTaskHistory/@item.TaskHistoryId">Edit</a></td>
+                    <td><a class="removeTask" href="/Home/RemoveTaskHistory/@item.TaskHistoryId">Remove</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <form method="get" action="/Home/AddTaskHistory">
+        <input type="submit" class="btn btn-success" value="Add Daily Task" />
+    </form>
+</div>
+
+
+

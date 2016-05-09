@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Dailydive.Contracts.Dto.Domain.Task>
+
+@{
+    ViewBag.Title = "AddTaskHistory";
+}
+<form method="post">
+    <select class="form-control" name="TaskId" id="selectTask" onchange="TaskChange() ">
+        <option id="opDefault" value="No Task Selected">Select a Task:</option>
+        @foreach (var item in Model)
+        {
+            <option medium="@item.TaskMeasurement" value="@item.TaskId">@item.TaskName</option>
+        }
+    </select>
+    <br />
+    <div id="formFill">
+        <div id="fillIn" hidden>
+            <div id="taskName"> </div>
+            <br />
+            <label>Quantity: </label>
+            <input class="form-control" name="TaskQuantity" type="number" required/>
+            <br />
+            <label>Date: </label> <br/>
+            <input id="kendoDate" class="form-control" name="TaskDate" type="date" required/>
+            <br />
+            <label>Details:</label>
+            <input class="form-control" name="TaskDetails" type="text" required/>
+            <hr />
+            <input type="submit" value="Add" class="btn btn-success" />
+        </div>
+    </div>
+</form>
+
+
+<script>
+
+    function TaskChange() {
+        $("#fillIn").show();
+        var task = $("#selectTask option:selected").text();       
+        var measurement = $("#selectTask option:selected").attr("medium");
+        $("#taskName").html("How many " + measurement + " have you achieved with " + task + " ?");
+        $("#opDefault").attr("disabled", "disabled");
+    }
+
+</script>

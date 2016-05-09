@@ -1,0 +1,53 @@
+﻿@model IList<Dailydive.Contracts.Dto.Domain.Task>
+
+<h2>Task</h2>
+<div class="container">
+
+    <form method="get" action="/home/SearchTask">
+        <label>Search By Task Name:</label>
+        <div class="row">
+            <div class="col-md-2">
+                <input name="searchFor" type="text" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <input type="submit" value="Search" class="btn btn-warning" />
+            </div>
+        </div>
+    </form>
+</div>
+<br/>
+<table class="table-hover">
+    <thead>
+        <tr>
+            <th>Task Name</th>
+            <th>Measurement</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+            {
+            <tr>
+                <td> @item.TaskName</td>
+                <td>@item.TaskMeasurement</td>
+                <td> <a class="editTask" href="/Home/EditTask/@item.TaskId">Edit</a> </td>
+                <td> <a class="removeTask" href="/home/RemoveTask/@item.TaskId">Remove</a> </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<br />
+
+<form method="post" action="/home/AddTask">
+    <h3>Add a Task:</h3>
+    <br />
+    <label>Name:</label>
+    <input name="TaskName" class="form-control" type="text" required />
+    <br />
+    <label>Measurement:</label>
+    <input name="TaskMeasurement" class="form-control" type="text" required />
+    <br />
+    <input type="submit" class="btn btn-success" value="Add New Task" />
+</form>
+
+
